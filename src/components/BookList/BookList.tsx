@@ -2,7 +2,7 @@ import BookItem from "../BookItem/BookItem"
 import type { BookItemProps } from "../../types/livro"
 import { memo } from "react"
 
-const BookList = memo(({ livros, updateList }: { livros: BookItemProps[]; updateList: () => void }) => {
+const BookList = memo(({ livros, onBookDeleted }: { livros: BookItemProps[]; onBookDeleted: () => void }) => {
 
     return (
         <div>
@@ -14,7 +14,7 @@ const BookList = memo(({ livros, updateList }: { livros: BookItemProps[]; update
                     titulo={livro.titulo}
                     autor={livro.autor}
                     status={livro.status}
-                    updateList={updateList}
+                    onDeleted={onBookDeleted}
                 />
             ))}
         </div>

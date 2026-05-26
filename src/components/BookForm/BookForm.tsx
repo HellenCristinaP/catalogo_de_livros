@@ -5,28 +5,28 @@ function BookForm({ onBookAdded }: { onBookAdded: () => void }) {
     const [titulo, setTitulo] = useState("");
     const [autor, setAutor] = useState("");
     const [status, setStatus] = useState("nao_lido");
-    const api = import.meta.env.VITE_LOCAL_API;
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        axios.post(`${api}/livros`, {
-            titulo,
-            autor,
-            status
-        })
-            .then((response) => {
-                console.log("Livro cadastrado com sucesso:", response.data);
 
-                setTitulo("");
-                setAutor("");
-                setStatus("nao_lido");
+        if (!titulo || !autor) {
+            alert("Preencha título e autor!");
+            return;
+        }
 
-                onBookAdded();
-            })
-            .catch((error) => {
-                console.error("Erro ao cadastrar livro:", error);
-            });
+        const api = import.meta.env.VITE_LOCAL_API;
+
+        await axios.post(`${api}/livros`, { titulo, autor, status });
+
+        onBookAdded();
+
+        if (titulo && autor) {
+            setTitulo("");
+            setAutor("");
+            setStatus("nao_lido");
+        }
     }
+
 
     return (
         <form action="#" onSubmit={handleSubmit}>

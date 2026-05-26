@@ -3,20 +3,18 @@ import BookList from "./components/BookList/BookList"
 import axios from "axios"
 import { useEffect, useState } from "react"
 
+const api = import.meta.env.VITE_LOCAL_API;
+
 function App() {
   const [data, setData] = useState([]);
-
-  function fetchData() {
-    const api = import.meta.env.VITE_LOCAL_API;
-
-    axios.get(`${api}/livros`)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Erro ao acessar a API:", error);
-      });
-  }
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`${api}/livros`);
+      setData(response.data);
+    } catch (error) {
+      console.error("Erro ao acessar a API:", error);
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -25,7 +23,7 @@ function App() {
   return (
     <>
       <BookForm onBookAdded={fetchData} />
-      <BookList livros={data} updateList={fetchData} />
+      <BookList livros={data} onBookDeleted={fetchData} />
     </>
   )
 }
