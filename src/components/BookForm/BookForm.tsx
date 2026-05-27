@@ -35,15 +35,15 @@ function BookForm({ onBookAdded }: { onBookAdded: () => void }) {
 
                 <input
                     type="text"
-                    name="title"
-                    id="title"
+                    name="titulo"
+                    id="titulo"
                     value={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
                 />
                 <input
                     type="text"
-                    name="author"
-                    id="author"
+                    name="autor"
+                    id="autor"
                     value={autor}
                     onChange={(e) => setAutor(e.target.value)}
                 />
@@ -53,8 +53,8 @@ function BookForm({ onBookAdded }: { onBookAdded: () => void }) {
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
                 >
-                    <option value="lido">Lido</option>
-                    <option value="nao_lido">Não lido</option>
+                    <option value="Lido">Lido</option>
+                    <option value="Não Lido">Não lido</option>
                 </select>
                 <button type="submit">Cadastrar</button>
             </fieldset>
