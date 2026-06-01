@@ -17,6 +17,12 @@ Exemplo:
 VITE_LOCAL_API = "https://crudcrud.com/api/52a341af940wmf9..."
 ```
 
+5º Rode o projeto
+
+```
+npm run dev
+```
+
 # Requisitos
 
 ## 1. Estrutura da Aplicação
